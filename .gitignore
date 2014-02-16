@@ -5,3 +5,10 @@ cabal-dev
 *.chi
 *.chs.h
 .virthualenv
+
+App.config
+*.fsproj
+*.sln
+*.suo
+*/obj/*
+*/bin/*
