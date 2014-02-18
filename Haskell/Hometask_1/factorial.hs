@@ -1,6 +1,12 @@
-foldl2 fxy acc [] = acc
-foldl2 fxy acc xs = foldl2 (fxy) (fxy acc (head xs)) (tail xs)
+import Test.QuickCheck
 
-factor1 n = foldl2 (\ x y -> x * y) 0 [1..n]
+fold fxy acc [] = acc
+fold fxy acc xs = fold (fxy) (fxy acc (head xs)) (tail xs)
 
-factor2 n = product [1..n]
+factor :: Integer -> Integer
+factor n = fold (\ x y -> x * y) 1 [1..n]
+
+test_factor n = factor n == product [1..n]
+
+
+main = quickCheck test_factor
