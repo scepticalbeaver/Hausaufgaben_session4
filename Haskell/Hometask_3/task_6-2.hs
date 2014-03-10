@@ -5,6 +5,7 @@ import Data.List
 checkSeq :: [Char] -> Bool
 checkSeq list = calcBrackets (list, [])
     where
+    calcBrackets :: ([Char], [Char]) -> Bool
     calcBrackets ([], stack) = stack == []
     calcBrackets ((x : xs), stack) =
         if isOpenBr x then calcBrackets (xs, x : stack)
@@ -12,6 +13,7 @@ checkSeq list = calcBrackets (list, [])
             if canClose stack x then calcBrackets (xs, tail stack) else False
             else calcBrackets (xs, stack)
     
+    canClose :: [Char] -> Char -> Bool
     canClose stack cymb =
         case stack of
             (s: ss) -> elemIndex s opens == elemIndex cymb closures
@@ -20,7 +22,10 @@ checkSeq list = calcBrackets (list, [])
 
     opens = ['{', '(', '[', '<']
     closures = ['}', ')', ']', '>']
+
+    isOpenBr :: Char -> Bool
     isOpenBr cymb = elem cymb opens
+    isClosingBr :: Char -> Bool
     isClosingBr cymb = elem cymb closures
 
 
