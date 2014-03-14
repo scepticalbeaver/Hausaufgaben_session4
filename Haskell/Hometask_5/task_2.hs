@@ -1,7 +1,3 @@
---Реализовать функцию свертки для бинарного дерева.
-
---foldr f z (x:xs) = f x (foldr f z xs) 
-
 module Task_2 where
 
 import Task_1 hiding (test, main)
