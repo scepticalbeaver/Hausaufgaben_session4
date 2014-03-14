@@ -1,3 +1,5 @@
+module Task_1 where
+
 data Tree a = Leaf a
             | Branch (Tree a) a (Tree a)
             deriving (Show)
@@ -29,3 +31,8 @@ test = filterTree (\x -> x > 9) tree1 == [10, 13]
         && filterTree (\x -> x < 7) tree1 == [2, 5, 6]
         && filterTree (\x -> x^2 > 300) leafTree == [21]
         && filterTree (\x -> x < 19) leafTree == []
+
+
+main = do
+    putStr "All tests passed:\n"
+    putStr (show(test) ++ "\n\n")
