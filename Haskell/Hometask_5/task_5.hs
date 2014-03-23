@@ -6,7 +6,7 @@ doFindfstLocalMax xs = dofindHelper (minBound :: Int) xs
     dofindHelper :: (Num a, Ord a, Show a) => a -> [a] -> IO()
     dofindHelper prev [curr] = if curr > prev
                                 then printResult curr
-                                else return ()
+                                else putStrLn "No local max has found"
     dofindHelper prev (x : xs) = if ((x > prev) && (x > (head xs)))
                                 then printResult x
                                 else dofindHelper x xs
