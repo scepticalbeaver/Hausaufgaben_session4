@@ -10,8 +10,8 @@ foldrTree fxy acc (Branch l x r) = foldrTree fxy middlePart r
     leftPart = foldrTree fxy acc l
     middlePart = fxy x leftPart
 
-positiveOnly :: Tree Int -> [Int]
-positiveOnly = foldrTree (\x acc -> if (x < 0) then x : acc else acc) []
+negativeOnly :: Tree Int -> [Int]
+negativeOnly = foldrTree (\x acc -> if (x < 0) then x : acc else acc) []
 
 tree1 = Branch 
         (Branch
@@ -27,4 +27,4 @@ tree1 = Branch
         10
         (Leaf 13)
 
-test = positiveOnly tree1 == [-7, -2]
+test = negativeOnly tree1 == [-7, -2]
