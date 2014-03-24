@@ -1,5 +1,7 @@
 -- Eratosphen sift
-import Data.List
+primes :: [Integer]
+primes = 2 : sieve [3, 5..] 
+    where
+    sieve (x : xs) = x : sieve [t | t <- xs, t `mod` x /= 0]
 
-primes = 2 : sieve [3, 5..] where
-   sieve (x : xs) = x : sieve (xs \\ map (\a -> a * x) (x : xs))
+test = take 5 primes == [2, 3, 5, 7, 11]
