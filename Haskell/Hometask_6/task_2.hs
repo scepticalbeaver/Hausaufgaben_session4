@@ -56,6 +56,9 @@ p1 *: p2 = summUp $ map (\m -> multiply p2 m) (monoms p1)
     where 
     summUp xs = foldr (\p acc -> p +: acc) (Polynom []) xs
 
+infixl 7 +:
+infixl 8 *:
+
 --x + 1
 simplePoly =  Polynom [Monom 1 1, Monom 1 0]
 
