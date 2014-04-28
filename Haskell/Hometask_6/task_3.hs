@@ -49,6 +49,16 @@ height :: (Num a, Ord a) => BSTree t -> a
 height Empty = 0
 height (Node _ left right) = 1 + max  (height left) (height right)
 
+foldrTree :: (a -> b -> b) -> b -> BSTree a -> b
+foldrTree fxy acc Empty = acc
+foldrTree fxy acc (Node x left right) = foldrTree fxy middlePart right
+    where
+    leftPart = foldrTree fxy acc left
+    middlePart = fxy x leftPart
+
+size tree = foldrTree (\x acc -> 1 + acc) 0 tree
+
+
 oneLevelTree = Node
                 5
                 Empty
@@ -95,8 +105,10 @@ heightTest = height grossBaume == 4 && height oneLevelTree == 1
 findTest = find 20 grossBaume && not (find 49 grossBaume)
 insertTest = find 47 (insert 47 grossBaume)
 removeTest = find 30 grossBaume && not(find 30 (remove 30 grossBaume)) && find 10 (remove 30 grossBaume)
+sizeTest = size oneLevelTree == 1 && size grossBaume == 8
 
 totalTest = heightTest
             && findTest
             && insertTest
             && removeTest
+            && sizeTest
